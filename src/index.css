@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Overriding default color system to match High Density aesthetic */
+  --color-indigo-50: #efebe9;       /* Light warm brown */
+  --color-indigo-100: #d7ccc8;      /* Warm beige */
+  --color-indigo-200: #bcaaa4;      /* Soft clay */
+  --color-indigo-300: #a1887f;      /* Medium clay */
+  --color-indigo-400: #8d6e63;      /* Terracotta */
+  --color-indigo-500: #795548;      /* Warm brown */
+  --color-indigo-600: #5d4037;      /* Primary Dark Brown */
+  --color-indigo-700: #4e342e;      /* Rich Deep Brown */
+  --color-indigo-800: #3e2723;      /* Espresso Dark Brown */
+  --color-indigo-900: #2d1810;      /* Darkest Brown */
+  --color-indigo-950: #2c1810;      /* Deep chocolate text-dark */
+
+  /* Purple is mapped to Amber/Gold accents */
+  --color-purple-50: #fff8e1;       /* Cream accent */
+  --color-purple-100: #ffecb3;      /* Light gold */
+  --color-purple-200: #ffe082;      /* Gold */
+  --color-purple-300: #ffd54f;      /* Bright gold */
+  --color-purple-400: #ffca28;      /* Amber */
+  --color-purple-500: #ffc107;      /* Accent Gold (yellow-500 in design) */
+  --color-purple-600: #ffb300;      /* Rich amber */
+  --color-purple-700: #ffa000;      /* Deep amber */
+  --color-purple-800: #ff8f00;      /* Dark gold */
+  --color-purple-900: #ff6f00;      /* Gold brown */
+
+  /* Neutral grays mapped to Stone/Warm Neutral */
+  --color-gray-50: #fcfbfa;         /* Very clean warm white */
+  --color-gray-100: #f4f1ee;        /* Page background warm neutral */
+  --color-gray-200: #e7e5e4;        /* Stone border / light grid */
+  --color-gray-300: #d6d3d1;        /* Stone medium border */
+  --color-gray-400: #a8a29e;        /* Stone text secondary */
+  --color-gray-500: #78716c;        /* Stone text body */
+  --color-gray-600: #57534e;        /* Stone text dark */
+  --color-gray-700: #44403c;        /* Stone dark gray */
+  --color-gray-800: #2c1810;        /* Deep Chocolate Text */
+  --color-gray-900: #1c1917;        /* Almost black */
+
+  /* Custom variables */
+  --color-warm-bg: #f4f1ee;
+  --color-chocolate-text: #2c1810;
+  --color-primary-brown: #5d4037;
+  --color-accent-gold: #ffc107;
+}
+
+body {
+  background-color: #f4f1ee;
+  color: #2c1810;
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar and subtle transitions */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f1ee;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a29e;
+}

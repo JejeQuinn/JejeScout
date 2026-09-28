@@ -1,0 +1,6 @@
+{
+  "name": "Sistem Informasi Pramuka SMK Bakti Idhata",
+  "description": "Sistem Manajemen Data, Kehadiran, Materi, dan Evaluasi SKU Pramuka Penegak SMK Bakti Idhata",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
