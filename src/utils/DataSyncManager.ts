@@ -51,6 +51,31 @@ function updateStatus(updates: Partial<SyncStatus>) {
  * guaranteeing conflict resolution, authoritative Firestore priority, and resolution of
  * CRUD race conditions that occur across page refreshes.
  */
+export function getCollectionStorageKey(collectionName: string): string {
+  const map: Record<string, string> = {
+    [COLLECTIONS.SISWA]: 'pramuka_siswa',
+    [COLLECTIONS.KEHADIRAN]: 'pramuka_kehadiran',
+    [COLLECTIONS.MATERI]: 'pramuka_materi',
+    [COLLECTIONS.SKU]: 'pramuka_sku',
+    [COLLECTIONS.SKU_DEFS]: 'pramuka_sku_defs',
+    [COLLECTIONS.SKK_DEFS]: 'pramuka_skk_defs',
+    [COLLECTIONS.SKK]: 'pramuka_skk_records',
+    [COLLECTIONS.KEGIATAN_EVENTS]: 'pramuka_kegiatan_events',
+    [COLLECTIONS.INVENTARIS]: 'pramuka_inventaris',
+    [COLLECTIONS.PEMINJAMAN]: 'pramuka_peminjaman',
+    [COLLECTIONS.MODUL_MATERI]: 'pramuka_modul_materi',
+    [COLLECTIONS.SILABUS]: 'pramuka_silabus',
+    [COLLECTIONS.KAS]: 'pramuka_kas',
+    [COLLECTIONS.DEWAN_AMBALAN]: 'pramuka_dewan_ambalan',
+    [COLLECTIONS.TABUNGAN]: 'pramuka_tabungan',
+    [COLLECTIONS.KEDISIPLINAN]: 'pramuka_kedisiplinan',
+    [COLLECTIONS.JURNAL]: 'pramuka_jurnal',
+    [COLLECTIONS.KELAS]: 'pramuka_kelas',
+    [COLLECTIONS.PENGAWAS_ACCOUNTS]: 'pramuka_pengawas_accounts'
+  };
+  return map[collectionName] || `pramuka_${collectionName}`;
+}
+
 export class DataSyncManager {
   private static isFlushing = false;
   private static initialized = false;
@@ -93,6 +118,10 @@ export class DataSyncManager {
     } catch (e) {
       console.warn('Error saving pending sync queue:', e);
     }
+  }
+
+  public static clearPendingQueue(): void {
+    this.savePendingQueue([]);
   }
 
   /**
@@ -254,7 +283,11 @@ export class DataSyncManager {
 
     // 3. Update localStorage offline cache with authoritative state
     try {
-      localStorage.setItem(`pramuka_${collectionName}`, JSON.stringify(result));
+      const storageKey = getCollectionStorageKey(collectionName);
+      localStorage.setItem(storageKey, JSON.stringify(result));
+      if (storageKey !== `pramuka_${collectionName}`) {
+        localStorage.setItem(`pramuka_${collectionName}`, JSON.stringify(result));
+      }
     } catch (e) {
       console.warn(`Error writing offline cache for ${collectionName}:`, e);
     }
